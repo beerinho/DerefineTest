@@ -33,6 +33,11 @@ export class StartPage {
           firstName: ['', Validators.compose([Validators.minLength(2), Validators.required])],
           lastName: ['', Validators.compose([Validators.minLength(2), Validators.required])],
           password: ['', Validators.compose([Validators.required])],
+          homeTown: [''],
+          birthDate: [''],
+          goal: [''],
+          aboutMe: [''],
+          profilePhoto: [''],
 
     });
     }
@@ -92,7 +97,12 @@ registerUser(){
         this.registerForm.value.firstName,
         this.registerForm.value.lastName, 
         this.registerForm.value.email, 
-        this.registerForm.value.password)
+        this.registerForm.value.password,
+        this.registerForm.value.homeTown,
+        this.registerForm.value.birthDate,
+        this.registerForm.value.goal,
+        this.registerForm.value.aboutMe,
+        this.registerForm.value.profilePhoto)
     .then(() => {
         loadingPopup.dismiss();
         this.navCtrl.setRoot("HomePage");

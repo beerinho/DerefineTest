@@ -1,3 +1,5 @@
+import { User } from './../../models/user';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { AuthData } from '../../providers/auth-data';
@@ -13,13 +15,18 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 })
 export class HomePage {
 
+  user = {} as User;
+
   email: any;
   profilePicture: any = "https://www.gravatar.com/avatar/"
   profileArray : any=[]; 
   profile: FirebaseObjectObservable<any[]>;
   uid:any;
+
+  public updateForm:any;
   
-  constructor(public navCtrl: NavController, public authData: AuthData,public alertCtrl: AlertController,public loadingCtrl: LoadingController,private toastCtrl: ToastController,public afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public authData: AuthData,public alertCtrl: AlertController,public loadingCtrl: LoadingController,private toastCtrl: ToastController,public afAuth: AngularFireAuth, public afDb: AngularFireDatabase, private fb: FormBuilder) {
+
   }  
 
   ionViewWillLoad(){
@@ -50,6 +57,10 @@ export class HomePage {
       }
 
     });
+}
+
+goToProfile(){
+  this.navCtrl.setRoot("ProfilePage")
 }
 
   logout(){

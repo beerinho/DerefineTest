@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <div class="profile-box">
+        <div text-center>
+            <img *ngIf="(profile | async)?.profilePhoto" src="{{(profile | async)?.profilePhoto}}" class="edit-avatar pop-in" alt="">
+            <img  *ngIf="!(profile | async)?.profilePhoto" src = "https://pbs.twimg.com/profile_images/834457277830541312/bYMCvtHD.jpg" class="edit-avatar pop-in" alt="">
+            <h1 class="name-text">{{(profile | async)?.firstName}} {{(profile | async)?.lastName}}</h1>
+        </div>
+    </div>
+
+    <div padding>
+
+      <h1>About</h1>
+        <ion-list no-lines >
+            <ion-item>
+              <h2>Home Town</h2>
+              <h3>{{(profile | async)?.homeTown}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>Date of Birth</h2>
+                <h3>{{(profile | async)?.birthDate}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>Primary Goal</h2>
+                <h3>{{(profile | async)?.goal}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>About Me</h2>
+                <h3>{{(profile | async)?.aboutMe}} </h3>
+            </ion-item>
+
+        </ion-list>
+      </div>
+
+    <button ion-button (click)="editPage()">Edit Profile</button>
+
+</ion-content>

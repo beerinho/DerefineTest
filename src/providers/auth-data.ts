@@ -12,7 +12,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 @Injectable()
 export class AuthData {
-  userData: any;
+
   constructor(public afAuth: AngularFireAuth, private platform: Platform,private facebook: Facebook,private googleplus: GooglePlus) {
   }
 
@@ -85,15 +85,22 @@ signInWithGoogle(): Promise<any> {
   }
 
   
-  registerUser(firstName: string, lastName: string, email: string, password: string): Promise<any> {
+  registerUser(firstName: string, lastName: string, email: string, password: string, homeTown: string,
+    birthDate: Date, goal: string, aboutMe: string, profilePhoto): Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((newUser) => {
       firebase.database().ref('/userProfile').child(newUser.uid).set({
           email: email,
           firstName: firstName,
           lastName: lastName,
+          homeTown: homeTown,
+          birthDate: birthDate,
+          goal: goal,
+          aboutMe: aboutMe,
+          profilePhoto: profilePhoto,
       });
     });
   }
 
+  
 }
 
