@@ -6,7 +6,7 @@ export interface User {
     birthDate: Date;
     homeTown: string;
     goal: string;
-    profilePhoto: any;
-    email,
+    profilePhoto: string;
+    email: string,
     aboutMe: string;
 }

@@ -29,9 +29,7 @@ constructor(public navCtrl: NavController, public authData: AuthData,public aler
    
       if(userAuth) {
         console.log("auth true!")
-        this.uid = userAuth.uid;     
-        this.email = userAuth.email;
-        this.profilePicture = "https://www.gravatar.com/avatar/" + md5(this.email.toLowerCase(), 'hex');
+        this.uid = userAuth.uid;
 
         let loadingPopup = this.loadingCtrl.create({
           spinner: 'crescent', 
@@ -57,6 +55,8 @@ constructor(public navCtrl: NavController, public authData: AuthData,public aler
   editPage(){
     this.navCtrl.push("EditProfilePage")
   }
+
+
 }
 
 

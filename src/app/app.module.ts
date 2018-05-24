@@ -32,6 +32,10 @@ import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
 
+//************** ionic camera *********************//
+
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 //********** firebase configuration  ************ */
 export const config = { 
   apiKey: "AIzaSyDBDuMks7F904683ChKt-6An9jwly89p-c",
@@ -72,7 +76,8 @@ export const config = {
     Facebook,
     RadioPlayer,
     Facebook,
-    GooglePlus
+    GooglePlus,
+    Camera,
   ]
 })
 export class AppModule {}
