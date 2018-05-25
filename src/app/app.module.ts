@@ -2,10 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { HttpModule } from '@angular/http';
+
 //*********** ionic Native **************/
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
+
 
 import { MyApp } from './app.component';
 
@@ -36,6 +39,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 //************** ionic camera *********************//
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { WordpressService } from '../providers/wordpress-provider';
 
 //********** firebase configuration  ************ */
 export const config = { 
@@ -58,7 +62,8 @@ export const config = {
   
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,6 +85,7 @@ export const config = {
     Facebook,
     GooglePlus,
     Camera,
+    WordpressService,
   ]
 })
 export class AppModule {}

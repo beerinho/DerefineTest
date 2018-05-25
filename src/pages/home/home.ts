@@ -63,6 +63,16 @@ goToProfile(){
   this.navCtrl.setRoot("ProfilePage")
 }
 
+goToDebunk(){
+  this.navCtrl.setRoot("DebunkPage")
+}
+goToRedefine(){
+  this.navCtrl.setRoot("RedefinePage")
+}
+goToDerefine(){
+  this.navCtrl.setRoot("DerefinePage")
+}
+
   logout(){
     this.authData.logoutUser()
     .then( authData => {
