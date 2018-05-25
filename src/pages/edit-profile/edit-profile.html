@@ -9,8 +9,6 @@
 
 <ion-content padding>
 
-    <button ion-button (click)="photoActionSheet()">Change Profile Photo</button>
-
     <ion-item>
         <ion-label fixed>First Name</ion-label>
         <ion-input tappable [(ngModel)]="user.firstName" type="text" placeholder="{{(profile | async)?.firstName}}"></ion-input>

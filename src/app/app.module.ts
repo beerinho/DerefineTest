@@ -24,6 +24,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 //*********** Provider **************/
 import { AuthData } from '../providers/auth-data';
 import { RadioPlayer } from '../providers/radio-service';
+import { ProfilePhotoService } from '../providers/profile-photo';
 
 
 //************** import image gallery *********************//
@@ -67,6 +68,7 @@ export const config = {
     StatusBar,
     SplashScreen,
     Geolocation,
+    ProfilePhotoService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: ionicGalleryModal.GalleryModalHammerConfig,
