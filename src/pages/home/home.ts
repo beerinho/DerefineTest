@@ -63,6 +63,10 @@ goToProfile(){
   this.navCtrl.setRoot("ProfilePage")
 }
 
+goToExplore(){
+  this.navCtrl.setRoot("ExplorePage")
+}
+
 goToDebunk(){
   this.navCtrl.setRoot("DebunkPage")
 }

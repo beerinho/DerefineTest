@@ -14,10 +14,10 @@ import 'rxjs/add/observable/forkJoin';
 export class PostPage {
 
   post: any;
-  user: string;
-  comments: Array<any> = new Array<any>();
-  categories: Array<any> = new Array<any>();
-  morePagesAvailable: boolean = true;
+ // user: string;
+ // comments: Array<any> = new Array<any>();
+ // categories: Array<any> = new Array<any>();
+ morePagesAvailable: boolean = true;
 
   constructor(
     public navParams: NavParams,
@@ -37,6 +37,10 @@ export class PostPage {
 
     this.post = this.navParams.get('item');
 
+    loading.dismiss();
+
+  }
+/*
     Observable.forkJoin(
       this.getAuthorData(),
       this.getCategories(),
@@ -74,7 +78,7 @@ export class PostPage {
       this.morePagesAvailable = false;
     })
   }
-/*
+
   goToCategoryPosts(categoryId, categoryTitle){
     console.log(categoryId)
     this.navCtrl.push("DebunkPage", {
