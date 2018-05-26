@@ -15,17 +15,23 @@ export class DerefinePage {
   morePagesAvailable: boolean = true;
   loggedUser: boolean = false;
 
+  /* *****SEARCH BAR*********
+  searchQuery: string = '';
+  items:any; */
+
   categoryId;
   categoryTitle;
 
 
   constructor(private loadingCtrl: LoadingController, private wordpressService: WordpressService, public navCtrl: NavController, public navParams: NavParams) {
+    //part of search bar function
+  //  this.initializeItems();
   }
 
   ionViewWillEnter() {
 
     //if we are browsing a category
-    this.categoryId = 6;
+    this.categoryId = 5;
     this.categoryTitle = this.navParams.get('title');
 
     if(!(this.posts.length > 0)){
@@ -42,6 +48,29 @@ export class DerefinePage {
       });
     }
   }
+
+/* *******SEARCH BAR FUNCTION************
+
+  initializeItems() {
+    this.items=this.posts;
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.categoryTitle.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+
+  */
 
   postTapped(event, post) {
 		this.navCtrl.push("PostPage", {

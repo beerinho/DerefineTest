@@ -7,12 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>explore</ion-title>
+    <ion-title>Explore</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <ion-card (click)="goToDebunk()">
+        <img src="http://www.derefine.com/wp-content/uploads/2017/08/pexels-books-dark-1.jpg"/>
+        <div class="card-title">Debunk</div>
+        <div class="card-subtitle">Browse all of the articles</div>
+      </ion-card>
+    
+      <ion-card (click)="goToDerefine()">
+        <img src="http://www.derefine.com/wp-content/uploads/2017/08/carrot-kale-walnuts-tomatoes-dark-1.jpg"/>
+        <div class="card-title">Derefine</div>
+        <div class="card-subtitle">Browse all of the recipes</div>
+      </ion-card>
+    
+      <ion-card (click)="goToRedefine()">
+        <img src="http://www.derefine.com/wp-content/uploads/2017/08/pexels-photo-shoes-dark-1.jpg"/>
+        <div class="card-title">Redefine</div>
+        <div class="card-subtitle">Browse all of the workouts</div>
+      </ion-card>
 
 </ion-content>

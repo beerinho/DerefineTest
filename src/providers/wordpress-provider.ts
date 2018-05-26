@@ -11,7 +11,7 @@ import 'rxjs/add/observable/forkJoin';
 export class WordpressService {
   constructor(public http: Http){}
 
-  WORDPRESS_URL = 'http://derefine.com/';
+  WORDPRESS_URL = 'http://www.derefine.com/';
   WORDPRESS_REST_API_URL = this.WORDPRESS_URL + 'wp-json/wp/v2/';
 
   getRecentPosts(categoryId:number, page:number = 1){

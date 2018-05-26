@@ -25,7 +25,7 @@ export class RedefinePage {
   ionViewWillEnter() {
 
     //if we are browsing a category
-    this.categoryId = 5;
+    this.categoryId = 6;
     this.categoryTitle = this.navParams.get('title');
 
     if(!(this.posts.length > 0)){

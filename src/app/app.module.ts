@@ -41,6 +41,10 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { WordpressService } from '../providers/wordpress-provider';
 
+//************** ionic calendar *********************//
+
+import { NgCalendarModule  } from 'ionic2-calendar';
+
 //********** firebase configuration  ************ */
 export const config = { 
   apiKey: "AIzaSyDBDuMks7F904683ChKt-6An9jwly89p-c",
@@ -64,6 +68,7 @@ export const config = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
+    NgCalendarModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

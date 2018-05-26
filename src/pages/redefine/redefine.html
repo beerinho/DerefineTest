@@ -6,16 +6,16 @@
   </ion-header>
   
   <ion-content class="content">
-    <ion-card *ngFor="let post of posts" >
+    <ion-card *ngFor="let post of posts" (click)="postTapped($event, post)" >
       <ion-card-content >
         <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
         <p [innerHTML]="post.excerpt.rendered"></p>
       </ion-card-content>
       <ion-row no-padding>
          <ion-col>
-           <button ion-button clear small color="primary" icon-start>
-             {{post.date.split('T')[0]}}
-           </button>
+          <ion-item clear small icon-start>
+            {{post.date.split('T')[0]}}
+          </ion-item>
          </ion-col>
          <ion-col text-right>
            <button ion-button small color="primary" (click)="postTapped($event, post)" icon-start>

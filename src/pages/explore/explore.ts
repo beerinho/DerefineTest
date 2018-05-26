@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ExplorePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-explore',
@@ -16,6 +9,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ExplorePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  goToDebunk(){
+    this.navCtrl.push("DebunkPage")
+  }
+
+  goToDerefine(){
+    this.navCtrl.push("DerefinePage")
+  }
+
+  goToRedefine(){
+    this.navCtrl.push("RedefinePage")
   }
 
   ionViewDidLoad() {

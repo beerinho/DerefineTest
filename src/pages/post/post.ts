@@ -14,9 +14,9 @@ import 'rxjs/add/observable/forkJoin';
 export class PostPage {
 
   post: any;
-  user: string;
-  comments: Array<any> = new Array<any>();
-  categories: Array<any> = new Array<any>();
+  // user: string;
+  // comments: Array<any> = new Array<any>();
+  // categories: Array<any> = new Array<any>();
   morePagesAvailable: boolean = true;
 
   constructor(
@@ -37,6 +37,8 @@ export class PostPage {
 
     this.post = this.navParams.get('item');
 
+    loading.dismiss();
+/*
     Observable.forkJoin(
       this.getAuthorData(),
       this.getCategories(),
@@ -45,18 +47,19 @@ export class PostPage {
         this.user = data[0].name;
         this.categories = data[1];
         this.comments = data[2];
-        loading.dismiss();
-      });
+
+      }); */
   }
 
-  getAuthorData(){
-    return this.wordpressService.getAuthor(this.post.author);
-  }
+ // getAuthorData(){
+ //   return this.wordpressService.getAuthor(this.post.author);
+ // }
 
-  getCategories(){
-    return this.wordpressService.getPostCategories(this.post);
-  }
+ // getCategories(){
+ //   return this.wordpressService.getPostCategories(this.post);
+ // }
 
+ /*
   getComments(){
     return this.wordpressService.getComments(this.post.id);
   }
@@ -74,7 +77,7 @@ export class PostPage {
       this.morePagesAvailable = false;
     })
   }
-/*
+
   goToCategoryPosts(categoryId, categoryTitle){
     console.log(categoryId)
     this.navCtrl.push("DebunkPage", {
