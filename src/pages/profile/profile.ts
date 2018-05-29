@@ -21,11 +21,8 @@ export class ProfilePage {
   base64Image: string;
   changephoto: boolean;
 
-  imageuser =  firebase.auth().currentUser.uid.toString();
-
   user = {} as User
   email: any;
-  profilePicture: any = "https://www.gravatar.com/avatar/"
   profileArray : any=[]; 
   profile: FirebaseObjectObservable<User[]>;
   ProfilePhoto;
@@ -76,9 +73,6 @@ constructor(private crop: Crop, private camera: Camera, private actionsheetCtrl:
   editPage(){
     this.navCtrl.push("EditProfilePage")
   }
-
-  //PHOTO DIV
-
   
     //Photo selection action sheet
 photoActionSheet(){
@@ -161,15 +155,33 @@ choosePicture(){
 
   }, error => {
     console.log("ERROR -> " + JSON.stringify(error));
+  }).then (()=>{
+    this.cropPhoto()
   });
 let loadingPopup = this.loadingCtrl.create({
     spinner: 'crescent', 
     content: 'Updating...',
   });
+
   loadingPopup.present();
 
   loadingPopup.dismiss();
 
+}
+
+cropPhoto(){
+  let option = {
+    quality:100,
+    targetWidth: 300,
+    targetHeight: 300,
+    };
+
+    this.crop.crop(this.base64Image, option).then(newImageURL =>{
+      this.base64Image = newImageURL;
+        console.log(newImageURL)
+    }, err => {
+      console.log(err);
+    })
 }
 
 
@@ -188,8 +200,8 @@ saveChanges(){
   loadingPopup.present();
 }
 
-Cancel(){
-  this.navCtrl.pop()
+cancelChanges(){
+  this.changephoto = false;
 }
 
 
