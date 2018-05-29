@@ -39,15 +39,12 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 //************** ionic camera *********************//
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
-<<<<<<< HEAD
 import { WordpressService } from '../providers/wordpress-provider';
+import { Crop } from '@ionic-native/crop';
 
 //************** ionic calendar *********************//
 
 import { NgCalendarModule  } from 'ionic2-calendar';
-=======
-import { Crop } from '@ionic-native/crop';
->>>>>>> 6c26df7bc643c52cae08eb5949b05694cd4eee1c
 
 //********** firebase configuration  ************ */
 export const config = { 
@@ -67,7 +64,6 @@ export const config = {
     BrowserModule,
     ionicGalleryModal.GalleryModalModule,
     IonicModule.forRoot(MyApp),
-  
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -94,11 +90,8 @@ export const config = {
     Facebook,
     GooglePlus,
     Camera,
-<<<<<<< HEAD
     WordpressService,
-=======
     Crop,
->>>>>>> 6c26df7bc643c52cae08eb5949b05694cd4eee1c
   ]
 })
 export class AppModule {}

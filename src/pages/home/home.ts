@@ -59,6 +59,10 @@ export class HomePage {
     });
 }
 
+goToPlanner(){
+  this.navCtrl.setRoot("PlannerPage")
+}
+
 goToProfile(){
   this.navCtrl.setRoot("ProfilePage")
 }
