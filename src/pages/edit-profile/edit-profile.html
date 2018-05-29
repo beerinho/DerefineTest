@@ -1,0 +1,53 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-item>
+        <ion-label fixed>First Name</ion-label>
+        <ion-input tappable [(ngModel)]="user.firstName" type="text" placeholder="{{(profile | async)?.firstName}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>Last Name</ion-label>
+          <ion-input tappable [(ngModel)]="user.lastName" type="text" placeholder="{{(profile | async)?.lastName}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input tappable [(ngModel)]="user.email" type="email" placeholder="{{(profile | async)?.email}}"></ion-input>
+      </ion-item> 
+
+      <ion-item>
+        <ion-label fixed>Home Town</ion-label>
+        <ion-input tappable [(ngModel)]="user.homeTown" type="text" placeholder="{{(profile | async)?.homeTown}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>Date of Birth</ion-label>
+          <ion-input tappable [(ngModel)]="user.birthDate" type="date" placeholder="{{(profile | async)?.birthDate}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label fixed>About Me</ion-label>
+          <ion-input tappable [(ngModel)]="user.aboutMe" type="text" *ngIf="(profile | async)?.aboutMe" placeholder="{{(profile | async)?.aboutMe}}"></ion-input>
+          <ion-input tappable [(ngModel)]="user.aboutMe" type="text" *ngIf="!(profile | async)?.aboutMe" placeholder="Tell us a little about yourself and why you are starting this journey."></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Goal</ion-label>
+        <ion-input tappable [(ngModel)]="user.goal" type="text"*ngIf="(profile | async)?.goal" placeholder="{{(profile | async)?.goal}}"></ion-input>
+        <ion-input tappable [(ngModel)]="user.goal" type="text"*ngIf="!(profile | async)?.goal" placeholder="Write down your primary goal."></ion-input>
+      </ion-item>
+
+    <button ion-button full (click)="updateUser(user)" color="blue2">
+        Update
+    </button>
+
+</ion-content>

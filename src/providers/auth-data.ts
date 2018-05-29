@@ -12,7 +12,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 
 @Injectable()
 export class AuthData {
-  userData: any;
+
   constructor(public afAuth: AngularFireAuth, private platform: Platform,private facebook: Facebook,private googleplus: GooglePlus) {
   }
 
@@ -45,26 +45,26 @@ signInWithGoogle(): Promise<any> {
 }
 
 
- updateUserProfile(uid,displayName,email,photo,phone){
+ updateUserProfile(uid,firstName,lastName,email,photo){
   firebase.database().ref('/userProfile').child(uid).once('value', function(snapshot) {
     var exists = (snapshot.val() !== null);
    
       if (exists) {
-        console.log('user ' + uid + ' exists!');
+        console.log('user: ' + uid + ' exists!');
         firebase.database().ref('userProfile/'+uid).update({ 
-          name: displayName,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           photo: photo,
-          phone:phone
         });
        
       } else {
         console.log('user ' + uid + ' does not exist!');
         firebase.database().ref('/userProfile').child(uid).set({  
-          name: displayName,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           photo: photo,
-          phone:phone
         });
  
       }
@@ -85,15 +85,22 @@ signInWithGoogle(): Promise<any> {
   }
 
   
-  registerUser(name: string, email: string, password: string,phone: number): Promise<any> {
+  registerUser(firstName: string, lastName: string, email: string, password: string, homeTown: string,
+    birthDate: Date, goal: string, aboutMe: string, profilePhoto): Promise<any> {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((newUser) => {
       firebase.database().ref('/userProfile').child(newUser.uid).set({
           email: email,
-          name: name,
-          phone: phone
+          firstName: firstName,
+          lastName: lastName,
+          homeTown: homeTown,
+          birthDate: birthDate,
+          goal: goal,
+          aboutMe: aboutMe,
+          profilePhoto: profilePhoto,
       });
     });
   }
 
+  
 }
 

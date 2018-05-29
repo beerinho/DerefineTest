@@ -24,6 +24,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 //*********** Provider **************/
 import { AuthData } from '../providers/auth-data';
 import { RadioPlayer } from '../providers/radio-service';
+import { ProfilePhotoService } from '../providers/profile-photo';
 
 
 //************** import image gallery *********************//
@@ -31,6 +32,11 @@ import { RadioPlayer } from '../providers/radio-service';
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 
+
+//************** ionic camera *********************//
+
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
 
 //********** firebase configuration  ************ */
 export const config = { 
@@ -63,6 +69,7 @@ export const config = {
     StatusBar,
     SplashScreen,
     Geolocation,
+    ProfilePhotoService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: ionicGalleryModal.GalleryModalHammerConfig,
@@ -72,7 +79,9 @@ export const config = {
     Facebook,
     RadioPlayer,
     Facebook,
-    GooglePlus
+    GooglePlus,
+    Camera,
+    Crop,
   ]
 })
 export class AppModule {}

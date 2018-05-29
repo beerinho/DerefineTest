@@ -1,0 +1,75 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div padding *ngIf="changephoto">
+            <img class="profilePhoto" [src]="base64Image ? base64Image : ProfilePhoto">
+
+            <button ion-button (click)="photoActionSheet()">Change Profile Photo</button>
+
+            <button ion-button (click)="cropPhoto()">Crop current photo</button>
+        
+            <button ion-button (click)="saveChanges()">Save Changes</button>
+
+            <button ion-button clear (click)="cancelChanges()">Cancel</button>
+
+    </div> 
+    <div *ngIf="!changephoto">
+    <div class="profile-box">
+        <div text-center>
+            <ion-grid>
+                <ion-row>
+                    <ion-col align-self-center>
+                        <div>
+                <img class="profilePhoto" [src]="ProfilePhoto ? ProfilePhoto : 'image'">
+                        </div>
+                    </ion-col>
+                    <ion-col align-self-center>
+                        <div>
+            <h1 class="name-text" text-wrap>{{(profile | async)?.firstName}} {{(profile | async)?.lastName}}</h1>
+                        <button ion-button (click)="editPage()">Edit Profile</button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+                <button ion-button (click)="updateProfilePhoto()">Update Profile Photo</button>
+        </div>
+    </div>
+
+    <div padding>
+
+      <h1>About</h1>
+        <ion-list no-lines >
+            <ion-item>
+              <h2>Home Town</h2>
+              <h3>{{(profile | async)?.homeTown}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>Date of Birth</h2>
+                <h3>{{(profile | async)?.birthDate}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>Primary Goal</h2>
+                <h3>{{(profile | async)?.goal}} </h3>
+            </ion-item>
+
+            <ion-item>
+                <h2>About Me</h2>
+                <h3>{{(profile | async)?.aboutMe}} </h3>
+            </ion-item>
+
+        </ion-list>
+      </div>
+    </div>
+
+
+
+</ion-content>
