@@ -1,15 +1,14 @@
 import { ProfilePhotoService } from './../../providers/profile-photo';
 import { User } from './../../models/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController, LoadingController, ActionSheetController } from 'ionic-angular';
 import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { AuthData } from '../../providers/auth-data';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { normalizeURL} from 'ionic-angular';
 
-import md5 from 'crypto-md5'; // dependencies:"crypto-md5"
 import { Camera } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop'
 
 @IonicPage()
 @Component({
@@ -24,26 +23,18 @@ export class ProfilePage {
 
   imageuser =  firebase.auth().currentUser.uid.toString();
 
-  ProfilePhoto: any;
   user = {} as User
   email: any;
   profilePicture: any = "https://www.gravatar.com/avatar/"
   profileArray : any=[]; 
   profile: FirebaseObjectObservable<User[]>;
-
-constructor(private camera: Camera, private actionsheetCtrl: ActionSheetController, private ppService: ProfilePhotoService, public navCtrl: NavController, public authData: AuthData,public alertCtrl: AlertController,public loadingCtrl: LoadingController,private toastCtrl: ToastController,public afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
+  ProfilePhoto;
   
 
-  this.ppService.getProfileImage(this.user).subscribe(image=>{ image 
-  this.ProfilePhoto = normalizeURL(image)})
+constructor(private crop: Crop, private camera: Camera, private actionsheetCtrl: ActionSheetController, private ppService: ProfilePhotoService, public navCtrl: NavController, public authData: AuthData,public alertCtrl: AlertController,public loadingCtrl: LoadingController,public afAuth: AngularFireAuth, public afDb: AngularFireDatabase) {
+
 }
 
-ngOnInit() {
-
-    this.ppService.getProfileImage(this.user).subscribe(image => {
-      this.base64Image = image;
-    });
-}
 
   ionViewWillLoad(){
     this.afAuth.authState.subscribe(userAuth => {
@@ -56,14 +47,18 @@ ngOnInit() {
         let loadingPopup = this.loadingCtrl.create({
           spinner: 'crescent', 
           content: '',
-          duration: 15000
         });
         loadingPopup.present();
 
+        this.ppService.getProfileImage(this.user).subscribe(image => {
+          this.ProfilePhoto = image.filename;
+        });
         this.profile = this.afDb.object('/userProfile/'+uid );
         this.profile.subscribe(profile => {
             this.profileArray = profile;
             loadingPopup.dismiss();
+
+        
         })
 
       } else {
@@ -127,9 +122,9 @@ takePicture(){
     destinationType : this.camera.DestinationType.DATA_URL,
     sourceType : this.camera.PictureSourceType.CAMERA,
     allowEdit : true,
-    encodingType: this.camera.EncodingType.PNG,
-    targetWidth: 500,
-    targetHeight: 500,
+    encodingType: this.camera.EncodingType.JPEG,
+    targetWidth: 300,
+    targetHeight: 300,
     saveToPhotoAlbum: true
   }).then(imageData => {
      // imageData is a base64 encoded string
@@ -143,7 +138,6 @@ takePicture(){
   let loadingPopup = this.loadingCtrl.create({
     spinner: 'crescent', 
     content: 'Updating...',
-    duration: 1500
   });
   loadingPopup.present();
 
@@ -155,24 +149,26 @@ choosePicture(){
     destinationType : this.camera.DestinationType.DATA_URL,
     sourceType : this.camera.PictureSourceType.PHOTOLIBRARY,
     allowEdit : true,
-    encodingType: this.camera.EncodingType.PNG,
-    targetWidth: 500,
-    targetHeight: 500,
+    encodingType: this.camera.EncodingType.JPEG,
+    targetWidth: 300,
+    targetHeight: 300,
     saveToPhotoAlbum: true,    
-  }).then(imageData => {
+  }).then (imageData => {
      // imageData is a base64 encoded string
     this.base64Image = "data:image/jpeg;base64," + imageData;
     //this.Picture is passing the string to our DB
-    this.Picture = imageData;
+    this.Picture = imageData; 
+
   }, error => {
     console.log("ERROR -> " + JSON.stringify(error));
   });
 let loadingPopup = this.loadingCtrl.create({
     spinner: 'crescent', 
     content: 'Updating...',
-    duration: 1500
   });
   loadingPopup.present();
+
+  loadingPopup.dismiss();
 
 }
 
@@ -183,6 +179,17 @@ saveChanges(){
 
   }
   this.changephoto = false;
+
+  let loadingPopup = this.loadingCtrl.create({
+    spinner: 'crescent', 
+    content: '',
+    duration: 3000,
+  });
+  loadingPopup.present();
+}
+
+Cancel(){
+  this.navCtrl.pop()
 }
 
 

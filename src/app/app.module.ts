@@ -36,6 +36,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 //************** ionic camera *********************//
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
 
 //********** firebase configuration  ************ */
 export const config = { 
@@ -80,6 +81,7 @@ export const config = {
     Facebook,
     GooglePlus,
     Camera,
+    Crop,
   ]
 })
 export class AppModule {}

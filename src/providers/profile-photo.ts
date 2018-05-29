@@ -4,35 +4,38 @@ import {User} from "../models/user";
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ProfilePhotoService {
 
     base64Image: string;
     Picture: any;
-    imageuser =  firebase.auth().currentUser.uid.toString();
 
-  constructor(private camera: Camera, public afDb: AngularFireDatabase){}
+  constructor(private loadingCtrl: LoadingController, private camera: Camera, public afDb: AngularFireDatabase){}
 
   uploadProfilePhoto(user, img) {
     // Create a root reference
     
+    
+    let imageuser =  firebase.auth().currentUser.uid.toString();
     let storageRef = firebase.storage().ref();
 
     let af = this.afDb;
-    let path = `userProfile/${this.imageuser}/profilePhoto`;
+    let path = `userProfile/${imageuser}/profilePhoto`;
     var iRef = storageRef.child(path);
     iRef.putString(img, 'base64', {contentType: 'image/jpg'}).then((snapshot) => {
       console.log('Uploaded a blob or file! Now storing the reference at',`/profilePhoto`);
-      af.object(`userProfile/${this.imageuser}/profilePhoto`).update({ path: path, filename: this.imageuser })
+      af.object(`userProfile/${imageuser}/profilePhoto`).update({ path: path, filename: snapshot.downloadURL })
     });
   }
 
   getProfileImage(user : User) :  ReplaySubject<any>{
     let resultSubject = new ReplaySubject(1);
     let storage = firebase.storage();
+    let imageuser =  firebase.auth().currentUser.uid.toString();
 
-    this.afDb.object(`userProfile/${this.imageuser}/profilePhoto`)
+    this.afDb.object(`userProfile/${imageuser}/profilePhoto`)
       .subscribe(image => {
         console.log('image', image);
         if(image.path != null){

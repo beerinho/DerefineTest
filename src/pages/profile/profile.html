@@ -9,7 +9,7 @@
 
 <ion-content>
     <div *ngIf="changephoto">
-            <img class="profilePhoto" [src]="base64Image ? base64Image : 'https://pbs.twimg.com/profile_images/834457277830541312/bYMCvtHD.jpg'">
+            <img class="profilePhoto" [src]="base64Image ? base64Image : ProfilePhoto">
 
             <button ion-button (click)="photoActionSheet()">Change Profile Photo</button>
         
@@ -18,7 +18,7 @@
     <div *ngIf="!changephoto">
     <div class="profile-box">
         <div text-center>
-                <img class="profilePhoto" [src]="base64Image ? base64Image : 'https://pbs.twimg.com/profile_images/834457277830541312/bYMCvtHD.jpg'">
+                <img class="profilePhoto" [src]="ProfilePhoto ? ProfilePhoto : 'image'">
                 <button ion-button (click)="updateProfilePhoto()">Update Profile Photo</button>
             <h1 class="name-text">{{(profile | async)?.firstName}} {{(profile | async)?.lastName}}</h1>
         </div>
